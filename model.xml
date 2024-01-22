@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="602,272"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="IoTProject">
+			<alt abstract="true" mandatory="true" name="Linguagem">
+				<graphics key="collapsed" value="false"/>
+				<feature name="PT"/>
+				<feature name="EN"/>
+			</alt>
+			<and abstract="true" name="Incapacidades">
+				<graphics key="collapsed" value="false"/>
+				<feature name="Audicao"/>
+			</and>
+			<and abstract="true" mandatory="true" name="Computador">
+				<graphics key="collapsed" value="false"/>
+				<and abstract="true" mandatory="true" name="AparelhosIoT">
+					<graphics key="collapsed" value="false"/>
+					<feature name="CampainhaPorta"/>
+					<feature name="SensorPorta"/>
+					<feature name="Fechadura"/>
+					<feature name="Comando"/>
+					<feature name="Lampada"/>
+					<and name="Sirene">
+						<graphics key="collapsed" value="false"/>
+						<feature name="LuzesLed"/>
+					</and>
+				</and>
+				<and abstract="true" mandatory="true" name="Perifericos">
+					<graphics key="collapsed" value="false"/>
+					<feature mandatory="true" name="Ecra"/>
+					<feature name="Colunas"/>
+				</and>
+			</and>
+			<and abstract="true" mandatory="true" name="Funcionalidades">
+				<graphics key="collapsed" value="false"/>
+				<alt abstract="true" mandatory="true" name="Mensagens">
+					<graphics key="collapsed" value="false"/>
+					<feature name="SMS"/>
+					<feature name="Whatsapp"/>
+				</alt>
+				<alt abstract="true" mandatory="true" name="AvisosInternos">
+					<graphics key="collapsed" value="false"/>
+					<feature name="AvisoEscrito"/>
+					<feature name="AvisoVozSintetica"/>
+				</alt>
+				<feature mandatory="true" name="Calendario"/>
+				<feature name="TocarCampainha"/>
+				<feature name="DetecaoPortaAberta"/>
+				<feature name="DetecaoVisitante"/>
+				<feature name="PedidoDeAjuda"/>
+			</and>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>PedidoDeAjuda</var>
+				<var>Comando</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>DetecaoVisitante</var>
+				<conj>
+					<var>CampainhaPorta</var>
+					<var>SensorPorta</var>
+				</conj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>DetecaoPortaAberta</var>
+				<var>SensorPorta</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>TocarCampainha</var>
+				<var>CampainhaPorta</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Audicao</var>
+				<conj>
+					<var>AvisoEscrito</var>
+					<not>
+						<var>Colunas</var>
+					</not>
+				</conj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<conj>
+					<var>Audicao</var>
+					<var>Sirene</var>
+				</conj>
+				<var>LuzesLed</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Audicao</var>
+				<disj>
+					<var>Lampada</var>
+					<var>LuzesLed</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>AvisoVozSintetica</var>
+				<var>Colunas</var>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>

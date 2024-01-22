@@ -1,0 +1,8 @@
+src.includes = src/
+src.excludes =src/aspects/aparelhos_IoT/Fechadura.aj,\
+			src/aspects/aparelhos_IoT/Lampada.aj,\
+			src/aspects/aparelhos_IoT/LuzesLed.aj,\
+			src/aspects/aparelhos_IoT/Sirene.aj,\
+			src/aspects/funcionalidades/mensagens/SMS.aj,\
+			src/aspects/i18n/PT.aj,\
+			src/aspects/incapacidades/Audicao.aj,\
